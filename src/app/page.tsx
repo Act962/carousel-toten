@@ -1,3 +1,5 @@
+import { ButtonFullScreen } from "@/components/button";
+
 export default function Home() {
   return (
     <main className="flex min-h-screen items-center justify-center bg-black">
@@ -10,6 +12,8 @@ export default function Home() {
         preload="metadata"
         className="w-full h-screen object-cover"
       />
+
+      <ButtonFullScreen />
     </main>
   );
 }
