@@ -9,7 +9,11 @@ interface VideoItem {
 }
 
 const videos: VideoItem[] = [
+
   {
+    url: "video.mp4"
+  }
+ /* {
     url: "game-1/1.mp4",
   },
   {
@@ -50,7 +54,8 @@ const videos: VideoItem[] = [
   },
   {
     url: "game-2/5.mp4",
-  },
+  },*/
+
 ];
 
 export default function Home() {
@@ -71,38 +76,38 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {
-    const video = videoRef.current;
+  // useEffect(() => {
+  //   const video = videoRef.current;
 
-    const handleVideoEnd = (): void => {
-      // Alterna para o próximo vídeo quando o atual terminar
-      setCurrentVideoIndex((prevIndex: number) =>
-        prevIndex === videos.length - 1 ? 0 : prevIndex + 1
-      );
-    };
+  //   const handleVideoEnd = (): void => {
+  //     // Alterna para o próximo vídeo quando o atual terminar
+  //     setCurrentVideoIndex((prevIndex: number) =>
+  //       prevIndex === videos.length - 1 ? 0 : prevIndex + 1
+  //     );
+  //   };
 
-    const handleLoadedMetadata = (): void => {
-      // Define a duração do vídeo baseada nos dados do objeto
-      // const currentVideo: VideoItem = videos[currentVideoIndex];
-      // if (video && currentVideo.duration) {
-      //   // Opcional: você pode usar a duração definida ou a duração real do arquivo
-      //   console.log(
-      //     `Vídeo carregado: ${currentVideo.url}, duração: ${currentVideo.duration}s`
-      //   );
-      // }
-    };
+  //   const handleLoadedMetadata = (): void => {
+  //     // Define a duração do vídeo baseada nos dados do objeto
+  //     // const currentVideo: VideoItem = videos[currentVideoIndex];
+  //     // if (video && currentVideo.duration) {
+  //     //   // Opcional: você pode usar a duração definida ou a duração real do arquivo
+  //     //   console.log(
+  //     //     `Vídeo carregado: ${currentVideo.url}, duração: ${currentVideo.duration}s`
+  //     //   );
+  //     // }
+  //   };
 
-    if (video) {
-      video.addEventListener("ended", handleVideoEnd);
-      video.addEventListener("loadedmetadata", handleLoadedMetadata);
+  //   if (video) {
+  //     video.addEventListener("ended", handleVideoEnd);
+  //     video.addEventListener("loadedmetadata", handleLoadedMetadata);
 
-      // Cleanup dos event listeners
-      return (): void => {
-        video.removeEventListener("ended", handleVideoEnd);
-        video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-      };
-    }
-  }, [videos, currentVideoIndex]);
+  //     // Cleanup dos event listeners
+  //     return (): void => {
+  //       video.removeEventListener("ended", handleVideoEnd);
+  //       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
+  //     };
+  //   }
+  // }, [videos, currentVideoIndex]);
 
   return (
     <main
@@ -111,14 +116,14 @@ export default function Home() {
     >
       <video
         ref={videoRef}
-        src={videos[currentVideoIndex].url}
+        src={videos[0].url}
         autoPlay
         muted
-        loop={false} // removido o loop para permitir a troca
+        loop={true} // removido o loop para permitir a troca
         playsInline
         preload="metadata"
         className="w-full h-screen object-cover"
-        key={currentVideoIndex} // força re-render quando muda o vídeo
+        
       />
 
       {isPause && (
