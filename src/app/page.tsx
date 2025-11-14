@@ -9,58 +9,13 @@ interface VideoItem {
 }
 
 const videos: VideoItem[] = [
-
   {
-    url: "video.mp4"
-  }
- /* {
-    url: "game-1/1.mp4",
+    url: "video.mp4",
   },
-  {
-    url: "game-1/2.mp4",
-  },
-  {
-    url: "game-1/3.mp4",
-  },
-  {
-    url: "game-1/4.mp4",
-  },
-  {
-    url: "game-1/5.mp4",
-  },
-  {
-    url: "game-1/6.mp4",
-  },
-  {
-    url: "game-1/7.mp4",
-  },
-  {
-    url: "game-1/8.mp4",
-  },
-  {
-    url: "game-1/9.mp4",
-  },
-  {
-    url: "game-2/1.mp4",
-  },
-  {
-    url: "game-2/2.mp4",
-  },
-  {
-    url: "game-2/3.mp4",
-  },
-  {
-    url: "game-2/4.mp4",
-  },
-  {
-    url: "game-2/5.mp4",
-  },*/
-
 ];
 
 export default function Home() {
   const [isPause, setIsPaused] = useState(false);
-  const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(0);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   function handlePause() {
@@ -76,39 +31,6 @@ export default function Home() {
     }
   }
 
-  // useEffect(() => {
-  //   const video = videoRef.current;
-
-  //   const handleVideoEnd = (): void => {
-  //     // Alterna para o próximo vídeo quando o atual terminar
-  //     setCurrentVideoIndex((prevIndex: number) =>
-  //       prevIndex === videos.length - 1 ? 0 : prevIndex + 1
-  //     );
-  //   };
-
-  //   const handleLoadedMetadata = (): void => {
-  //     // Define a duração do vídeo baseada nos dados do objeto
-  //     // const currentVideo: VideoItem = videos[currentVideoIndex];
-  //     // if (video && currentVideo.duration) {
-  //     //   // Opcional: você pode usar a duração definida ou a duração real do arquivo
-  //     //   console.log(
-  //     //     `Vídeo carregado: ${currentVideo.url}, duração: ${currentVideo.duration}s`
-  //     //   );
-  //     // }
-  //   };
-
-  //   if (video) {
-  //     video.addEventListener("ended", handleVideoEnd);
-  //     video.addEventListener("loadedmetadata", handleLoadedMetadata);
-
-  //     // Cleanup dos event listeners
-  //     return (): void => {
-  //       video.removeEventListener("ended", handleVideoEnd);
-  //       video.removeEventListener("loadedmetadata", handleLoadedMetadata);
-  //     };
-  //   }
-  // }, [videos, currentVideoIndex]);
-
   return (
     <main
       className="relative flex min-h-screen items-center justify-center bg-black"
@@ -123,7 +45,6 @@ export default function Home() {
         playsInline
         preload="metadata"
         className="w-full h-screen object-cover"
-        
       />
 
       {isPause && (
