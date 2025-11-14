@@ -32,10 +32,7 @@ export default function Home() {
   }
 
   return (
-    <main
-      className="relative flex min-h-screen items-center justify-center bg-black"
-      onClick={handlePause}
-    >
+    <main className="relative flex min-h-screen items-center justify-center bg-black">
       <video
         ref={videoRef}
         src={videos[0].url}
