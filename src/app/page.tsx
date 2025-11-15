@@ -40,7 +40,7 @@ export default function Home() {
         muted
         loop={true} // removido o loop para permitir a troca
         playsInline
-        preload="metadata"
+        preload="auto"
         className="w-full h-screen object-cover"
       />
 
