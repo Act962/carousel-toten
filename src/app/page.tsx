@@ -63,6 +63,7 @@ export default function Home() {
         src={videos[currentVideoIndex].url}
         autoPlay
         controls={false}
+        onClick={handlePause}
         playsInline
         preload="auto"
         onEnded={handleVideoEnd}
