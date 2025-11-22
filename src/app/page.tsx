@@ -1,7 +1,6 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
 import { ButtonFullScreen } from "@/components/button";
-import Image from "next/image";
+import { useState, useEffect, useRef } from "react";
 
 // Definição do tipo para os objetos de vídeo
 interface VideoItem {
@@ -12,11 +11,37 @@ const videos: VideoItem[] = [
   {
     url: "video.mp4",
   },
+  {
+    url: "video01.mp4",
+  },
+  {
+    url: "video02.mp4",
+  },
 ];
+
+// Componente ButtonFullScreen simulado
 
 export default function Home() {
   const [isPause, setIsPaused] = useState(false);
+  const [currentVideoIndex, setCurrentVideoIndex] = useState(0);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Função para ir para o próximo vídeo
+  function handleVideoEnd() {
+    setCurrentVideoIndex((prevIndex) => {
+      // Volta para o primeiro vídeo quando chegar ao final
+      return (prevIndex + 1) % videos.length;
+    });
+  }
+
+  // Atualiza o src do vídeo quando o índice muda
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.load(); // Recarrega o vídeo com o novo src
+      video.play(); // Reproduz automaticamente
+    }
+  }, [currentVideoIndex]);
 
   function handlePause() {
     const video = videoRef.current;
@@ -35,23 +60,23 @@ export default function Home() {
     <main className="relative flex min-h-screen items-center justify-center bg-black">
       <video
         ref={videoRef}
-        src={videos[0].url}
+        src={videos[currentVideoIndex].url}
         autoPlay
-        muted
-        loop={true} // removido o loop para permitir a troca
+        controls={false}
         playsInline
         preload="auto"
-        className="w-full h-screen object-cover"
+        onEnded={handleVideoEnd}
+        className="w-full h-screen object-cover cursor-pointer"
       />
 
       {isPause && (
-        <Image
-          src="/play.svg"
-          alt="Ícone de Play"
-          width={200}
-          height={200}
-          className="absolute w-1/3 z-20 inset-0 m-auto"
-        />
+        <svg
+          className="absolute w-32 h-32 z-20 inset-0 m-auto text-white pointer-events-none"
+          fill="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path d="M8 5v14l11-7z" />
+        </svg>
       )}
 
       <ButtonFullScreen />
