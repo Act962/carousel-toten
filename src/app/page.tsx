@@ -17,6 +17,33 @@ const videos: VideoItem[] = [
   {
     url: "video02.mp4",
   },
+  {
+    url: "video03.mp4",
+  },
+  {
+    url: "video04.mp4",
+  },
+  {
+    url: "video05.mp4",
+  },
+  {
+    url: "video06.mp4",
+  },
+  {
+    url: "video07.mp4",
+  },
+  {
+    url: "video08.mp4",
+  },
+  {
+    url: "video09.mp4",
+  },
+  {
+    url: "video10.mp4",
+  },
+  {
+    url: "video11.mp4",
+  },
 ];
 
 // Componente ButtonFullScreen simulado
